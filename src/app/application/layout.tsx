@@ -3,10 +3,6 @@ import { Montserrat } from "next/font/google";
 import "../globals.css";
 
 import { cn } from "@/lib/utils";
-import { Toaster } from "../components/ui/toaster";
-
-import TopBar from "../components/layout/top-bar/page";
-import Sidebar from "../components/layout/side-bar/sidebar";
 const montserrat = Montserrat({
   subsets: ["cyrillic"],
   variable: "--font-montserrat",
@@ -24,11 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("font-montserrat", montserrat.variable)}>
-        <div className="w-full h-screen flex">
-          <Sidebar />
-          <div className="w-full h-full flex flex-col">{children}</div>
-          <Toaster />
-        </div>
+        {children}
       </body>
     </html>
   );
