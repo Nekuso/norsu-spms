@@ -19,6 +19,10 @@ import Sidebar from "@/components/layout/side-bar/side-bar";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import Providers from "@/redux/Provider";
+import { useTransition } from "react";
+import { toast } from "@/components/ui/use-toast";
+import { signOut } from "@/lib/actions/index";
+import Topbar from "@/components/layout/top-bar/top-bar";
 const montserrat = Montserrat({
   subsets: ["cyrillic"],
   variable: "--font-montserrat",
@@ -33,52 +37,25 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const onSignOut = async () => {
+    toast({
+      description: "Logging out...",
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await signOut();
+  };
+
   return (
     <html lang="en">
       <body className={cn("font-montserrat", montserrat.variable)}>
         <Providers>
           <div className="w-full min-h-screen hidden bg-red-400 max-lg:flex justify-center place-items-center">
-            <h1 className="text-2xl">
-              Please open the app on a bigger screen or Computer
-            </h1>
+            <h1 className="text-2xl text-white">Abrihi sa dakong screen goy</h1>
           </div>
           <div className="max-lg:hidden grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative">
             <Sidebar />
             <div className="flex flex-col">
-              <div className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
-                <div className="w-full flex-1">
-                  <form>
-                    <div className="relative">
-                      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        type="search"
-                        placeholder="Search products..."
-                        className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-                      />
-                    </div>
-                  </form>
-                </div>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="secondary"
-                      size="icon"
-                      className="rounded-full"
-                    >
-                      <CircleUser className="h-5 w-5" />
-                      <span className="sr-only">Toggle user menu</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Settings</DropdownMenuItem>
-                    <DropdownMenuItem>Support</DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Logout</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
+              <Topbar />
               {children}
             </div>
           </div>
