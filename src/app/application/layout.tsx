@@ -3,6 +3,22 @@ import { Montserrat } from "next/font/google";
 import "../globals.css";
 
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { CircleUser, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import Sidebar from "@/components/layout/side-bar/side-bar";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import Providers from "@/redux/Provider";
 const montserrat = Montserrat({
   subsets: ["cyrillic"],
   variable: "--font-montserrat",
@@ -20,7 +36,55 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("font-montserrat", montserrat.variable)}>
-        {children}
+        <Providers>
+          <div className="w-full min-h-screen hidden bg-red-400 max-lg:flex justify-center place-items-center">
+            <h1 className="text-2xl">
+              Please open the app on a bigger screen or Computer
+            </h1>
+          </div>
+          <div className="max-lg:hidden grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative">
+            <Sidebar />
+            <div className="flex flex-col">
+              <div className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+                <div className="w-full flex-1">
+                  <form>
+                    <div className="relative">
+                      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        type="search"
+                        placeholder="Search products..."
+                        className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
+                      />
+                    </div>
+                  </form>
+                </div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="secondary"
+                      size="icon"
+                      className="rounded-full"
+                    >
+                      <CircleUser className="h-5 w-5" />
+                      <span className="sr-only">Toggle user menu</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                    <DropdownMenuItem>Support</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Logout</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+              {children}
+            </div>
+          </div>
+          <Sonner />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

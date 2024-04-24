@@ -18,6 +18,7 @@ import { signInWithEmailAndPassword } from "@/lib/actions";
 import { useTransition } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import LoginBG from "@/images/login-bg.jpg";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Must be a valid email" }),
@@ -51,13 +52,13 @@ export default function Login() {
       toast({
         description: "Login successful",
       });
-      // return redirect("/application");
+      return redirect("/application");
     });
   }
 
   return (
     <div className="w-full h-screen lg:grid lg:grid-cols-2">
-      <div className="flex items-center justify-center py-12">
+      <div className="flex items-center justify-center py-12 bg-slate-100">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
@@ -125,10 +126,8 @@ export default function Login() {
       </div>
       <div className="hidden bg-muted lg:block">
         <Image
-          src="/placeholder.svg"
+          src={LoginBG}
           alt="Image"
-          width="1920"
-          height="1080"
           className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />
       </div>
