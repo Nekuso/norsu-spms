@@ -2,14 +2,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import StockContent from "./stock-content";
+import SupplyContent from "./supply-content";
 import createSupabaseBrowserClient from "@/lib/supabase/client";
 import StockNotFound from "./not-found";
 import Skeleton from "./skeleton";
 import { useMainStocks } from "@/hooks/useMainStocks";
 import { useUOMS } from "@/hooks/useUOMS";
 
-export default function Department({ params }: { params: any }) {
+export default function Supply({ params }: { params: any }) {
   const [error, setError] = useState(null);
   const { getStock, currentStock } = useMainStocks();
   const { getUOMS, allUOMSData } = useUOMS();
@@ -51,7 +51,11 @@ export default function Department({ params }: { params: any }) {
       ) : currentStock.length === 0 ? (
         <Skeleton />
       ) : (
-        <StockContent params={params} stock={currentStock} uoms={allUOMSData} />
+        <SupplyContent
+          params={params}
+          stock={currentStock}
+          uoms={allUOMSData}
+        />
       )}
     </div>
   );

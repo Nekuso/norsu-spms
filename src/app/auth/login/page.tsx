@@ -37,7 +37,6 @@ export default function Login() {
     startTransition(async () => {
       const result = await signInWithEmailAndPassword(data);
 
-      console.log(result);
       const { error } = JSON.parse(result);
       if (error?.message) {
         console.log(error);

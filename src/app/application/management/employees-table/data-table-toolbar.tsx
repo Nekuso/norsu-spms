@@ -19,7 +19,7 @@ export function DataTableToolbar<TData>({
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
-  const departmentsSlice = useSelector((state: any) => state.departments);
+  const sectorsSlice = useSelector((state: any) => state.sectors);
   const rolesSlice = useSelector((state: any) => state.roles);
 
   return (
@@ -40,11 +40,11 @@ export function DataTableToolbar<TData>({
             options={rolesSlice}
           />
         )}
-        {table.getColumn("department") && (
+        {table.getColumn("sector") && (
           <DataTableFacetedFilter
-            column={table.getColumn("department")}
-            title="Departments"
-            options={departmentsSlice}
+            column={table.getColumn("sector")}
+            title="Sectors"
+            options={sectorsSlice}
           />
         )}
         {isFiltered && (

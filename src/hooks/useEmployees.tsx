@@ -1,7 +1,6 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { EmployeeDisplay } from "@/types";
 import { QueryData, createClient } from "@supabase/supabase-js";
-import { redirect } from "next/navigation";
 import { useState } from "react";
 
 export const useEmployees: any = () => {
@@ -10,7 +9,7 @@ export const useEmployees: any = () => {
   );
   const [currentEmployeeData, setCurrentEmployeeData] = useState<any>([]);
 
-  const createEmployee = async (props: any, duration: number = 2000) => {
+  const createEmployee = async (props: any, duration: number = 1000) => {
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!,
@@ -30,11 +29,8 @@ export const useEmployees: any = () => {
           last_name: props.last_name,
           image_url: props.image_url,
           address: props.address,
-          contact_number: props.contact_number,
-          gender: props.gender,
-          dob: props.dob,
           role: props.role,
-          department: props.department,
+          sector: props.sector,
           password: props.password,
         },
       },
@@ -59,19 +55,11 @@ export const useEmployees: any = () => {
       first_name,
       last_name,
       image_url,
-      departments (
-        id,
-        department_name,
-        image_url,
-        description,
-        department_head
+      sectors (
+        *
       ),
-      
       address,
-      contact_number,
-      gender,
       roles (id, role),
-      dob,
       password
     `
       )

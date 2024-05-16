@@ -9,7 +9,7 @@ export default function ManagementContent({
 }: {
   dataEmployees: EmployeeDisplay[];
 }) {
-  const departmentsSlice = useSelector((state: any) => state.departments);
+  const sectorsSlice = useSelector((state: any) => state.sectors);
   const rolesSlice = useSelector((state: any) => state.roles);
 
   return (
@@ -18,7 +18,7 @@ export default function ManagementContent({
         "Fetching Data..."
       ) : (
         <DataTable
-          columns={initateColumns(departmentsSlice, rolesSlice)}
+          columns={initateColumns(sectorsSlice, rolesSlice)}
           data={dataEmployees}
         />
       )}

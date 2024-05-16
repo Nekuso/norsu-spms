@@ -14,11 +14,10 @@ import {
   ArrowUpIcon,
   CaretSortIcon,
 } from "@radix-ui/react-icons";
-import { FaEye } from "react-icons/fa";
 import { EmployeeDisplay } from "@/types";
 import Link from "next/link";
 
-export const initateColumns = (departments: any, roles: any) => {
+export const initateColumns = (sectors: any, roles: any) => {
   const columns: ColumnDef<EmployeeDisplay>[] = [
     {
       id: "name",
@@ -128,19 +127,14 @@ export const initateColumns = (departments: any, roles: any) => {
       },
     },
     {
-      accessorKey: "contact_number",
-      header: "Contact Number",
-    },
-    {
-      id: "department",
-      accessorKey: "departments",
-      accessorFn: (row) => row.departments?.department_name,
-      header: "Department",
+      id: "sector",
+      accessorKey: "sectors",
+      accessorFn: (row) => row.sectors?.sector_name,
+      header: "Sector",
       cell: ({ row }) => {
-        const item = row.original.departments?.department_name
-          ? departments.find(
-              (item: any) =>
-                item.value === row.original.departments?.department_name
+        const item = row.original.sectors?.sector_name
+          ? sectors.find(
+              (item: any) => item.value === row.original.sectors?.sector_name
             )
           : [];
 

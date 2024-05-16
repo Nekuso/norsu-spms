@@ -20,10 +20,14 @@ export type EmployeeDisplay = {
   contact_number: number;
   gender: string;
   dob: string;
-  departments: {
+  sectors: {
     id: number;
-    department_name: string;
+    image_url: string;
+    sector_name: string;
+    sector_head: string;
+    sector_type: string;
     description: string;
+    created_at: string;
   };
   roles: {
     id: number;

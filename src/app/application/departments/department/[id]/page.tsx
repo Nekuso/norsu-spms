@@ -6,7 +6,7 @@ import DepartmentContent from "./department-content";
 import createSupabaseBrowserClient from "@/lib/supabase/client";
 import DepartmentNotFound from "./not-found";
 import Skeleton from "./skeleton";
-import { useDepartments } from "@/hooks/useDepartments";
+import { useDepartments } from "@/hooks/useSectors";
 
 export default function Department({ params }: { params: any }) {
   const [error, setError] = useState(null);

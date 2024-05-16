@@ -21,7 +21,7 @@ import { toast as sonner } from "sonner";
 import { useTransition } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { cn } from "@/lib/utils";
-import { useDepartments } from "@/hooks/useDepartments";
+import { useDepartments } from "@/hooks/useSectors";
 
 export default function DepartmentForm({ setDialogOpen }: any) {
   const [isPending, startTransition] = useTransition();

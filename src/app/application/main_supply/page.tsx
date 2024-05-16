@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { useEffect } from "react";
-import StocksContent from "./stocks-content";
+import StocksContent from "./supply-content";
 import createSupabaseBrowserClient from "@/lib/supabase/client";
 import { toast as sonner } from "sonner";
 import { toast } from "@/components/ui/use-toast";
@@ -23,6 +23,7 @@ export default function Stocks() {
     label: uom?.unit_name,
     icon: PiRulerBold,
   }));
+
 
   dispatch(setUOMSData(uomsData));
 
@@ -61,7 +62,7 @@ export default function Stocks() {
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl">Stocks</h1>
       </div>
-      <StocksContent dataStocks={allStocksData} />
+      <StocksContent dataStocks={allStocksData}  />
     </main>
   );
 }

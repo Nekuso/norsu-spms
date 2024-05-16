@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import DepartmentForm from "./add-stock-form";
+import DepartmentForm from "./add-supply-form";
 
 export default function EmployeesDialog() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);

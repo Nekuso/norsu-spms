@@ -5,9 +5,9 @@ import DepartmentsContent from "./departments-content";
 import createSupabaseBrowserClient from "@/lib/supabase/client";
 import { toast as sonner } from "sonner";
 import { toast } from "@/components/ui/use-toast";
-import { useDepartments } from "@/hooks/useDepartments";
+import { useDepartments } from "@/hooks/useSectors";
 import { HomeIcon } from "lucide-react";
-import { setDepartmentsData } from "@/redux/slices/departmentsSlice";
+import { setDepartmentsData } from "@/redux/slices/sectorsSlice";
 import { useDispatch } from "react-redux";
 
 export default function Departments() {

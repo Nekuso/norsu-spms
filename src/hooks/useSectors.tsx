@@ -1,17 +1,17 @@
 import { QueryData, createClient } from "@supabase/supabase-js";
 import { useState } from "react";
 
-export const useDepartments: any = () => {
+export const useSectors: any = () => {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!
   );
-  const [allDepartmentsData, setAllDepartmentsData] = useState<any>([]);
-  const [currentDepartment, setCurrentDepartmentData] = useState<any>([]);
+  const [allSectorsData, setAllSectorsData] = useState<any>([]);
+  const [currentSector, setCurrentSectorData] = useState<any>([]);
 
-  const createDepartment = async (props: any, duration?: any) => {
-    const result = await supabase.from("departments").insert({
-      department_name: props.department_name,
+  const createSector = async (props: any, duration?: any) => {
+    const result = await supabase.from("sectors").insert({
+      sector_name: props.sector_name,
       description: props.description,
     });
 
@@ -20,13 +20,13 @@ export const useDepartments: any = () => {
     return result;
   };
 
-  const getDepartments = async () => {
+  const getSectors = async () => {
     const result = await supabase
-      .from("departments")
+      .from("sectors")
       .select(
         `
       id,
-      department_name,
+      sector_name,
       description,
       image_url,
       created_at
@@ -37,16 +37,16 @@ export const useDepartments: any = () => {
     if (error) {
       return error;
     }
-    return setAllDepartmentsData(data);
+    return setAllSectorsData(data);
   };
 
-  const getDepartment = async (id: string, duration?: number) => {
+  const getSector = async (id: string, duration?: number) => {
     const { data, error } = await supabase
-      .from("departments")
+      .from("sectors")
       .select(
         `
       id,
-      department_name,
+      sector_name,
       description,
       image_url,
       created_at
@@ -56,13 +56,13 @@ export const useDepartments: any = () => {
     if (error) return error;
 
     await new Promise((resolve) => setTimeout(resolve, duration));
-    return setCurrentDepartmentData(data);
+    return setCurrentSectorData(data);
   };
-  const updateDepartment = async (props: any, duration?: number) => {
+  const updateSector = async (props: any, duration?: number) => {
     const result = await supabase
-      .from("departments")
+      .from("sectors")
       .update({
-        department_name: props.department_name,
+        sector_name: props.sector_name,
         description: props.description,
       })
       .eq("id", props.id);
@@ -71,11 +71,8 @@ export const useDepartments: any = () => {
 
     return JSON.stringify(result);
   };
-  const deleteDepartment = async (props: any, duration?: number) => {
-    const result = await supabase
-      .from("departments")
-      .delete()
-      .eq("id", props.id);
+  const deleteSector = async (props: any, duration?: number) => {
+    const result = await supabase.from("sectors").delete().eq("id", props.id);
 
     await new Promise((resolve) => setTimeout(resolve, duration));
 
@@ -84,14 +81,14 @@ export const useDepartments: any = () => {
 
   return {
     // states
-    allDepartmentsData,
-    currentDepartment,
+    allSectorsData,
+    currentSector,
 
     // methods
-    createDepartment,
-    getDepartments,
-    getDepartment,
-    updateDepartment,
-    deleteDepartment,
+    createSector,
+    getSectors,
+    getSector,
+    updateSector,
+    deleteSector,
   };
 };

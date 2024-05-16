@@ -1,14 +1,15 @@
-import { DataTable } from "./stocks-table/data-table";
-import { initialState as initateColumns } from "./stocks-table/columns";
+import { DataTable } from "./supplies-table/data-table";
+import { initialState as initateColumns } from "./supplies-table/columns";
 import { useSelector } from "react-redux";
 
-export default function DepartmentContent({
+export default function SupplyContent
+({
   dataStocks,
 }: {
   dataStocks: any[];
 }) {
   const uomsSlice = useSelector((state: any) => state.uoms);
-
+  console.log(dataStocks);
   return (
     <div className="w-full h-full">
       {dataStocks.length === 0 ? (

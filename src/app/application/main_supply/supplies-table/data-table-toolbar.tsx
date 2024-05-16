@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { statuses } from "./columns";
 
 import { DataTableFacetedFilter } from "./data-table-faceted-filter";
-import AddDepartmentButton from "./add-stock/add-stock-dialog";
+import AddDepartmentButton from "./add-supply/add-supply-dialog";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
 

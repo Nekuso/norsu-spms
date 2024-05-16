@@ -9,9 +9,9 @@ import { useEmployees } from "@/hooks/useEmployees";
 import { useRoles } from "@/hooks/useRoles";
 import EmployeeNotFound from "./not-found";
 import Skeleton from "./skeleton";
-import { useDepartments } from "@/hooks/useDepartments";
+import { useDepartments } from "@/hooks/useSectors";
 import { HomeIcon } from "lucide-react";
-import { setDepartmentsData } from "@/redux/slices/departmentsSlice";
+import { setDepartmentsData } from "@/redux/slices/sectorsSlice";
 import { setRolesData } from "@/redux/slices/rolesSlice";
 import { FaRegUser } from "react-icons/fa";
 

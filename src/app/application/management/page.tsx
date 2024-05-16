@@ -6,10 +6,10 @@ import { useEmployees } from "@/hooks/useEmployees";
 import createSupabaseBrowserClient from "@/lib/supabase/client";
 import { toast as sonner } from "sonner";
 import { toast } from "@/components/ui/use-toast";
-import { useDepartments } from "@/hooks/useDepartments";
+import { useSectors } from "@/hooks/useSectors";
 import { useRoles } from "@/hooks/useRoles";
 import { HomeIcon } from "lucide-react";
-import { setDepartmentsData } from "@/redux/slices/departmentsSlice";
+import { setSectorsData } from "@/redux/slices/sectorsSlice";
 import { useDispatch } from "react-redux";
 import { setRolesData } from "@/redux/slices/rolesSlice";
 import { FaRegUser } from "react-icons/fa";
@@ -17,13 +17,13 @@ import { FaRegUser } from "react-icons/fa";
 export default function Management() {
   const dispatch = useDispatch();
   const { getEmployees, allEmployeesData } = useEmployees();
-  const { getDepartments, allDepartmentsData } = useDepartments();
+  const { getSectors, allSectorsData } = useSectors();
   const { getRoles, allRolesData } = useRoles();
 
-  const departmentsData = allDepartmentsData.map((department: any) => ({
-    id: department?.id,
-    value: department?.department_name,
-    label: department?.department_name,
+  const sectorsData = allSectorsData.map((sector: any) => ({
+    id: sector?.id,
+    value: sector?.sector_name,
+    label: sector?.sector_name,
     icon: HomeIcon,
   }));
   const rolesData = allRolesData.map((role: any) => ({
@@ -32,7 +32,7 @@ export default function Management() {
     label: role?.role,
     icon: FaRegUser,
   }));
-  dispatch(setDepartmentsData(departmentsData));
+  dispatch(setSectorsData(sectorsData));
   dispatch(setRolesData(rolesData));
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function Management() {
       });
     }
 
-    getDepartments();
+    getSectors();
     getRoles();
   }, []);
 

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import currentEmployeeReducer from "./slices/employeeSlice";
-import departmentsSlice from "./slices/departmentsSlice";
+import sectorsSlice from "./slices/sectorsSlice";
 import uomsReducer from "./slices/uomsSlice";
 import rolesReducer from "./slices/rolesSlice";
 import brandsReducer from "./slices/brandsSlice";
@@ -10,7 +10,7 @@ import orderCartSlice from "./slices/orderCartSlice";
 export const store = configureStore({
   reducer: {
     currentEmployee: currentEmployeeReducer,
-    departments: departmentsSlice,
+    sectors: sectorsSlice,
     uoms: uomsReducer,
     roles: rolesReducer,
     brands: brandsReducer,

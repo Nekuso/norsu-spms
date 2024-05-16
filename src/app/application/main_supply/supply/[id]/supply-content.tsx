@@ -1,7 +1,7 @@
-import UpdateStockButton from "./update-stock/update-stock-dialog";
-import DeleteStockButton from "./delete-stock/delete-stock-dialog";
+import UpdateStockButton from "./update-supply/update-stock-dialog";
+import DeleteStockButton from "./delete-stock/delete-supply-dialog";
 
-export default function UserContent({ stock, uoms }: any) {
+export default function SupplyContent({ stock, uoms }: any) {
   return (
     <div className="w-full h-[805px] 2xl:h-[882px] flex flex-col max-w-[1840px] justify-center place-items-center gap-7 py-4">
       <pre>
