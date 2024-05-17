@@ -15,7 +15,7 @@ export const useEmployees: any = () => {
       process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!,
       {
         auth: {
-          storageKey: "s1",
+          storageKey: "s3",
         },
       }
     );
@@ -35,8 +35,6 @@ export const useEmployees: any = () => {
         },
       },
     });
-    console.log(props);
-    console.log(result);
     await new Promise((resolve) => setTimeout(resolve, duration));
 
     return JSON.stringify(result);
@@ -88,17 +86,11 @@ export const useEmployees: any = () => {
       first_name,
       last_name,
       image_url,
-      departments (
-        id,
-        department_name,
-        image_url,
-        description
+      sectors (
+        *
       ),
       address,
-      contact_number,
-      gender,
       roles (id, role),
-      dob,
       password
     `
       )

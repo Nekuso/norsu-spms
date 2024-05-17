@@ -68,14 +68,14 @@ export const initateColumns = (sectors: any, roles: any) => {
         return (
           <div className="flex place-items-center gap-4 z-0">
             <Avatar className="w-10 h-10 cursor-pointer z-0">
-              <AvatarImage src={item.image_url} alt={item.id} />
+              <AvatarImage src={item?.image_url} alt={item?.id} />
               <AvatarFallback className="bg-darkBg">
-                {`${item.first_name[0]}${item.last_name[0]}`}
+                {`${item?.first_name[0]}${item?.last_name[0]}`}
               </AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
               <span className="text-sm font-semibold">
-                {item.first_name} {item.last_name}
+                {item?.first_name} {item?.last_name}
               </span>
             </div>
           </div>
@@ -134,14 +134,14 @@ export const initateColumns = (sectors: any, roles: any) => {
       cell: ({ row }) => {
         const item = row.original.sectors?.sector_name
           ? sectors.find(
-              (item: any) => item.value === row.original.sectors?.sector_name
+              (item: any) => item?.value === row.original.sectors?.sector_name
             )
           : [];
 
         if (!item) {
           return null;
         }
-        return item.label;
+        return item?.label;
       },
       filterFn: (row, id, value) => {
         return value.includes(row.getValue(id));
@@ -149,7 +149,7 @@ export const initateColumns = (sectors: any, roles: any) => {
     },
     {
       accessorKey: "roles",
-      accessorFn: (row) => row.roles.role,
+      accessorFn: (row) => row.roles?.role,
       header: "Role",
       cell: ({ row }) => {
         const role = roles.find(

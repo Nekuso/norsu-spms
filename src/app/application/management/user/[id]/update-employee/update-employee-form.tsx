@@ -6,10 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 
-import DobInput from "./dob-input";
 import RoleInput from "./roles-input";
-import GenderInput from "./gender-input";
-import DepartmentInput from "./department-input";
+import SectorInput from "./sector-input";
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -35,7 +33,7 @@ export default function EmployeeForm({
   setDialogOpen,
   employee,
   roles,
-  departments,
+  sectors,
 }: any) {
   const [isPending, startTransition] = useTransition();
   const { updateEmployee } = useEmployees();
@@ -50,16 +48,11 @@ export default function EmployeeForm({
       .min(8, { message: "Password must be at least 8 characters" }),
     image_url: z.string().default("something"),
     address: z.string().min(1, { message: "Address is required" }),
-    contact_number: z.coerce
-      .number()
-      .min(1, { message: "Contact number is required" }),
-    gender: z.string().default("Male"),
-    dob: z.string().transform((arg) => new Date(arg)),
     role: z
       .string()
       .min(1, { message: "Role is required" })
       .transform((arg) => new Number(arg)),
-    department: z
+    sector: z
       .string()
       .transform((arg) => new Number(arg))
       .nullish(),
@@ -74,11 +67,8 @@ export default function EmployeeForm({
       email: employee.email,
       password: employee.password,
       address: employee.address,
-      contact_number: employee.contact_number,
-      gender: employee.gender,
-      dob: employee.dob,
       role: employee.roles.id.toString(),
-      department: employee.departments.id.toString(),
+      sector: employee.sectors.id.toString(),
     },
   });
 
@@ -211,59 +201,6 @@ export default function EmployeeForm({
               <div className="w-full flex flex-col gap-2">
                 <FormField
                   control={form.control}
-                  name="contact_number"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-xs">Contact Number</FormLabel>
-                      <FormControl>
-                        <Input
-                          className="rounded-lg border-slate-600/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                          {...field}
-                          accept="number"
-                          type="number"
-                          placeholder="#"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="w-full flex flex-col gap-2">
-                <FormField
-                  control={form.control}
-                  name="gender"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-xs">Gender</FormLabel>
-                      <FormControl>
-                        <GenderInput data={field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </div>
-            <div className="w-full flex gap-4">
-              <div className="w-full flex flex-col gap-2">
-                <FormField
-                  control={form.control}
-                  name="dob"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-xs">Date Of Birth</FormLabel>
-                      <FormControl>
-                        <DobInput data={field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="w-full flex flex-col gap-2">
-                <FormField
-                  control={form.control}
                   name="role"
                   render={({ field }) => (
                     <FormItem>
@@ -279,28 +216,24 @@ export default function EmployeeForm({
               <div className="w-full flex flex-col gap-2">
                 <FormField
                   control={form.control}
-                  name="department"
+                  name="sector"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-xs">Department</FormLabel>
-                      <DepartmentInput
-                        data={field}
-                        form={form}
-                        departmentsData={departments}
-                      />
+                      <FormLabel className="text-xs">Sector</FormLabel>
+                      <SectorInput data={field} form={form} sectors={sectors} />
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
             </div>
-            <div className="w-full flex gap-4 place-items-end">
-              <div className="w-full flex flex-col gap-2">
+            <div className="w-full h-full flex gap-4 place-items-end">
+              <div className="w-full h-full flex flex-col gap-2">
                 <FormField
                   control={form.control}
                   name="address"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="h-[82%]">
                       <FormLabel className="text-xs">Address</FormLabel>
                       <Textarea
                         className="border-slate-600/50 w-full h-full resize-none"

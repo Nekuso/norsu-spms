@@ -9,24 +9,20 @@ import { useEmployees } from "@/hooks/useEmployees";
 import { useRoles } from "@/hooks/useRoles";
 import EmployeeNotFound from "./not-found";
 import Skeleton from "./skeleton";
-import { useDepartments } from "@/hooks/useSectors";
-import { HomeIcon } from "lucide-react";
-import { setDepartmentsData } from "@/redux/slices/sectorsSlice";
-import { setRolesData } from "@/redux/slices/rolesSlice";
-import { FaRegUser } from "react-icons/fa";
+import { useSectors } from "@/hooks/useSectors";
 
 export default function User({ params }: { params: any }) {
   const [error, setError] = useState(null);
   const { getEmployee, currentEmployeeData } = useEmployees();
   const { getRoles, allRolesData } = useRoles();
-  const { getDepartments, allDepartmentsData } = useDepartments();
+  const { getSectors, allSectorsData } = useSectors();
 
   useEffect(() => {
     const initialFetch = async () => {
       const result = await getEmployee(params.id, 1000);
       if (result) setError(result);
       getRoles();
-      getDepartments();
+      getSectors();
     };
 
     initialFetch();
@@ -63,7 +59,7 @@ export default function User({ params }: { params: any }) {
           params={params}
           employee={currentEmployeeData}
           roles={allRolesData}
-          departments={allDepartmentsData}
+          sectors={allSectorsData}
         />
       )}
     </div>

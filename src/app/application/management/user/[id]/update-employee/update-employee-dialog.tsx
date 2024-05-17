@@ -17,7 +17,7 @@ import { MdOutlineModeEdit } from "react-icons/md";
 export default function UpdateEmployeeDialog({
   employee,
   roles,
-  departments,
+  sectors,
 }: any) {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
@@ -41,7 +41,7 @@ export default function UpdateEmployeeDialog({
           dialogIsOpen={dialogIsOpen}
           employee={employee}
           roles={roles}
-          departments={departments}
+          sectors={sectors}
         />
       </DialogContent>
     </Dialog>
