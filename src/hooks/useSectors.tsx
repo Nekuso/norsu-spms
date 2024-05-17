@@ -12,6 +12,7 @@ export const useSectors: any = () => {
   const createSector = async (props: any, duration?: any) => {
     const result = await supabase.from("sectors").insert({
       sector_name: props.sector_name,
+      sector_type: props.sector_type,
       description: props.description,
     });
 
@@ -23,15 +24,7 @@ export const useSectors: any = () => {
   const getSectors = async () => {
     const result = await supabase
       .from("sectors")
-      .select(
-        `
-      id,
-      sector_name,
-      description,
-      image_url,
-      created_at
-    `
-      )
+      .select(`*`)
       .order("created_at", { ascending: false });
     const { data, error } = result;
     if (error) {
@@ -47,6 +40,7 @@ export const useSectors: any = () => {
         `
       id,
       sector_name,
+      sector_type,
       description,
       image_url,
       created_at
@@ -63,6 +57,7 @@ export const useSectors: any = () => {
       .from("sectors")
       .update({
         sector_name: props.sector_name,
+        sector_type: props.sector_type,
         description: props.description,
       })
       .eq("id", props.id);

@@ -3,18 +3,21 @@
 import { useEffect } from "react";
 import StocksContent from "./supply-content";
 import createSupabaseBrowserClient from "@/lib/supabase/client";
-import { toast as sonner } from "sonner";
 import { toast } from "@/components/ui/use-toast";
-import { useMainStocks } from "@/hooks/useMainStocks";
 import { PiRulerBold } from "react-icons/pi";
 
 import { setUOMSData } from "@/redux/slices/uomsSlice";
 import { useDispatch } from "react-redux";
 import { useUOMS } from "@/hooks/useUOMS";
+import { useMainSupplies } from "@/hooks/useMainSupplies";
+import { useSupplyCategories } from "@/hooks/useSupplyCategories";
+import { setSupplyCategories } from "@/redux/slices/supplyCategoriesSlice";
 
-export default function Stocks() {
+export default function MainSupply() {
   const dispatch = useDispatch();
-  const { getStocks, allStocksData } = useMainStocks();
+  const { getMainSupplies, allMainSuppliesData } = useMainSupplies();
+  const { getSupplyCategories, allSupplyCategoriesData } =
+    useSupplyCategories();
   const { getUOMS, allUOMSData } = useUOMS();
 
   const uomsData = allUOMSData.map((uom: any) => ({
@@ -23,12 +26,17 @@ export default function Stocks() {
     label: uom?.unit_name,
     icon: PiRulerBold,
   }));
-
+  const supplyCategoriesData = allSupplyCategoriesData.map((category: any) => ({
+    id: category?.id,
+    value: category?.name,
+    label: category?.name,
+  }));
 
   dispatch(setUOMSData(uomsData));
+  dispatch(setSupplyCategories(supplyCategoriesData));
 
   useEffect(() => {
-    const { error } = getStocks();
+    const { error } = getMainSupplies();
     if (error?.message) {
       toast({
         variant: "destructive",
@@ -37,17 +45,18 @@ export default function Stocks() {
       });
     }
     getUOMS();
+    getSupplyCategories();
   }, []);
 
   useEffect(() => {
     const supabase = createSupabaseBrowserClient();
     const subscribedChannel = supabase
-      .channel("stocks-follow-up")
+      .channel("supply-follow-up")
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "main_stocks" },
+        { event: "*", schema: "public", table: "main_supplies" },
         (payload: any) => {
-          getStocks();
+          getMainSupplies();
         }
       )
       .subscribe();
@@ -60,9 +69,9 @@ export default function Stocks() {
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center">
-        <h1 className="text-lg font-semibold md:text-2xl">Stocks</h1>
+        <h1 className="text-lg font-semibold md:text-2xl">Main Supplies</h1>
       </div>
-      <StocksContent dataStocks={allStocksData}  />
+      <StocksContent dataStocks={allMainSuppliesData} />
     </main>
   );
 }

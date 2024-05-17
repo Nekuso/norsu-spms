@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 
 export default function SelectDemo({ data }: { data: any }) {
   const rolesData = useSelector((state: any) => state.roles);
+  console.log(rolesData)
 
   return (
     <Select onValueChange={data.onChange}>

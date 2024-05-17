@@ -7,7 +7,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FormControl } from "@/components/ui/form";
-import { useSelector } from "react-redux";
 
 export default function SelectDemo({ data, form, sectors }: any) {
   function findRoleById(idString: any) {

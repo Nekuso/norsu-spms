@@ -35,9 +35,10 @@ export type EmployeeDisplay = {
   };
 };
 
-export type DepartmentsDisplay = {
+export type SectorsDisplay = {
   id: number;
-  department_name: string;
+  sector_name: string;
+  sector_type: string;
   image_url: string;
   description: string;
   created_at: string;
@@ -45,7 +46,7 @@ export type DepartmentsDisplay = {
 
 export type departments = {
   id: number;
-  department_name: string;
+  sector_name: string;
   description: string;
 };
 
@@ -89,52 +90,13 @@ export type allMainStocksDisplay = {
     id: number;
     unit_name: string;
   };
+  supply_categories: {
+    id: number;
+    name: string;
+  };
   price: number;
   qrcode: string;
   status: string;
-  created_at: string;
-};
-
-export type allPartsDisplay = {
-  id: number;
-  name: string;
-  description: string;
-  image_url: string;
-  stock_quantity: number;
-  brands: {
-    id: number;
-    brand_name: string;
-  };
-  price: number;
-  barcode: string;
-  status: string;
-  inventory: {
-    id: number;
-    branches: {
-      id: number;
-      branch_name: string;
-      branch_location: string;
-    };
-  };
-  created_at: string;
-};
-
-export type allServicesDisplay = {
-  id: number;
-  name: string;
-  description: string;
-  image_url: string;
-  price: number;
-  duration: number;
-  status: string;
-  inventory: {
-    id: number;
-    branches: {
-      id: number;
-      branch_name: string;
-      branch_location: string;
-    };
-  };
   created_at: string;
 };
 

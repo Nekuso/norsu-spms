@@ -1,21 +1,21 @@
-import { DataTable } from "./supplies-table/data-table";
-import { initialState as initateColumns } from "./supplies-table/columns";
+import { DataTable } from "./main-supplies-table/data-table";
+import { initialState as initateColumns } from "./main-supplies-table/columns";
 import { useSelector } from "react-redux";
 
-export default function SupplyContent
-({
-  dataStocks,
-}: {
-  dataStocks: any[];
-}) {
+export default function SupplyContent({ dataStocks }: { dataStocks: any[] }) {
   const uomsSlice = useSelector((state: any) => state.uoms);
-  console.log(dataStocks);
+  const supplyCategoriesSlice = useSelector(
+    (state: any) => state.supplyCategories
+  );
   return (
     <div className="w-full h-full">
       {dataStocks.length === 0 ? (
         "Fetching Data..."
       ) : (
-        <DataTable columns={initateColumns(uomsSlice)} data={dataStocks} />
+        <DataTable
+          columns={initateColumns(uomsSlice, supplyCategoriesSlice)}
+          data={dataStocks}
+        />
       )}
     </div>
   );

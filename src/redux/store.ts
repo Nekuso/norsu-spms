@@ -6,12 +6,14 @@ import rolesReducer from "./slices/rolesSlice";
 import brandsReducer from "./slices/brandsSlice";
 import orderCartOptionSlice from "./slices/orderCartOptionSlice";
 import orderCartSlice from "./slices/orderCartSlice";
+import supplyCategoriesSlice from "./slices/supplyCategoriesSlice";
 
 export const store = configureStore({
   reducer: {
     currentEmployee: currentEmployeeReducer,
     sectors: sectorsSlice,
     uoms: uomsReducer,
+    supplyCategories: supplyCategoriesSlice,
     roles: rolesReducer,
     brands: brandsReducer,
 

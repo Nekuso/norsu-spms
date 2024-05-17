@@ -19,14 +19,14 @@ export const links = [
     label: "Requests",
   },
   {
-    href: "/application/stocks",
+    href: "/application/main_supply",
     icon: Package,
-    label: "Stocks",
+    label: "Main Supply",
   },
   {
-    href: "/application/departments",
+    href: "/application/sectors",
     icon: Building,
-    label: "Departments",
+    label: "Sectors",
   },
   {
     href: "/application/management",
