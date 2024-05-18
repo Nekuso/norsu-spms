@@ -1,5 +1,5 @@
-import UpdateStockButton from "./update-main-supply/update-stock-dialog";
-import DeleteStockButton from "./delete-main-supply/delete-main-dialog";
+import UpdateStockButton from "./update-main-supplies/update-stock-dialog";
+import DeleteStockButton from "./delete-main-supplies/delete-main-dialog";
 
 export default function SupplyContent({ stock, uoms }: any) {
   return (

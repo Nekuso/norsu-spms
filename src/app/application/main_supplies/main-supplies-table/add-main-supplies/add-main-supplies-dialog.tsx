@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { IoPersonAddOutline } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,26 +9,27 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import DepartmentForm from "./add-supply-form";
+import OrderForm from "./add-main-supplies-form";
+import { BsBoxSeam } from "react-icons/bs";
 
-export default function EmployeesDialog() {
+export default function SuppliesDialog() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
   return (
     <Dialog open={dialogIsOpen} onOpenChange={setDialogIsOpen}>
       <DialogTrigger asChild>
         <Button className="text-xs font-bold rounded-md flex gap-2 bg-applicationPrimary hover:bg-applicationPrimary transition-all duration-300">
-          New Supply
+          <BsBoxSeam /> Update Supplies
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] border border-lightBorder shadow-2xl">
+      <DialogContent className="max-w-[1170px] 2xl:max-w-[1570px] bg-slate-200 border border-lightBorder shadow-2xl">
         <DialogHeader>
-          <DialogTitle>New Supply</DialogTitle>
+          <DialogTitle>Update Supplies</DialogTitle>
           <DialogDescription>
-            Add a new Supply with Descriptions
+            Update the supplies for the main supplies.
           </DialogDescription>
         </DialogHeader>
-        <DepartmentForm setDialogOpen={setDialogIsOpen} />
+        <OrderForm setDialogOpen={setDialogIsOpen} />
       </DialogContent>
     </Dialog>
   );

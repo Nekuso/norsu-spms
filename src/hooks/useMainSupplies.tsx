@@ -14,10 +14,10 @@ export const useMainSupplies: any = () => {
       name: props.name,
       description: props.description,
       image_url: props.image_url,
-      stock_quantity: props.stock_quantity,
+      supply_quantity: props.stock_quantity,
       uom_id: props.uom_id,
       price: props.price,
-      qrcode: props.qrcode,
+      barcode: props.barcode,
       status: props.status,
     });
 
@@ -87,36 +87,45 @@ export const useMainSupplies: any = () => {
     return setCurrentMainSupplyData(data);
   };
 
-  const updateMainSupply = async (props: any, duration?: number) => {
-    const result = await supabase
-      .from("main_supplies")
-      .update({
-        name: props.name,
-        description: props.description,
-        image_url: props.image_url,
-        qrcode: props.qrcode,
-        uom_id: props.uom_id,
-        stock_quantity: props.stock_quantity,
-        price: props.price,
-        status: props.status,
+  const updateMainSupplies = async (props: any, duration?: number) => {
+    const supplies = props.restock_supplies;
+    const result = await supabase.rpc("updateorcreatesupplies", {
+      supplies,
+    });
+
+    if (result.error) {
+      return result.error;
+    }
+
+    const reportResult = await supabase
+      .from("restock_reports")
+      .insert({
+        employee_id: props.employee_id,
+        total_price: props.total_price,
       })
-      .eq("id", props.id);
-    console.log(result);
+      .select();
+
+    const reportEntriesResult = await supabase
+      .from("restock_report_entries")
+      .insert(
+        props.restock_supplies.map((supply: any) => {
+          return {
+            restock_report_id: reportResult.data?.[0]?.id,
+            name: supply.name,
+            description: supply.description,
+            image_url: supply.image,
+            supply_quantity: supply.quantity,
+            supply_category: supply.supply_category,
+            uom_id: supply.uom_id,
+            price: supply.price,
+            barcode: supply.barcode,
+          };
+        })
+      )
+      .select();
 
     await new Promise((resolve) => setTimeout(resolve, duration));
     return result;
-  };
-  const updateMainSupplyStatus = async (props: any, duration?: number) => {
-    const result = await supabase
-      .from("main_supplies")
-      .update({
-        status: props.status,
-      })
-      .eq("id", props.id);
-
-    await new Promise((resolve) => setTimeout(resolve, duration));
-
-    return JSON.stringify(result);
   };
   const deleteMainSupply = async (props: any, duration: number = 2000) => {
     const result = await supabase
@@ -137,8 +146,7 @@ export const useMainSupplies: any = () => {
     createMainSupply,
     getMainSupply,
     getMainSupplies,
-    updateMainSupply,
-    updateMainSupplyStatus,
+    updateMainSupplies,
     deleteMainSupply,
   };
 };

@@ -68,7 +68,7 @@ export default function EmployeeForm({
       password: employee.password,
       address: employee.address,
       role: employee.roles.id.toString(),
-      sector: employee.sectors.id.toString(),
+      sector: employee?.sectors?.id?.toString(),
     },
   });
 

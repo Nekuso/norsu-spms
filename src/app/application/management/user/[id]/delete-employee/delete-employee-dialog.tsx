@@ -14,7 +14,7 @@ import {
 import { RiDeleteBinLine } from "react-icons/ri";
 
 import { useDispatch } from "react-redux";
-import { setEmployeeData } from "@/redux/slices/employeeSlice";
+import { setCurrentSession } from "@/redux/slices/employeeSlice";
 import { cn } from "@/lib/utils";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "@/components/ui/use-toast";
@@ -26,7 +26,7 @@ export default function DeleteEmployeeDialog({ employeeData }: any) {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const employee = employeeData;
   const dispatch = useDispatch();
-  dispatch(setEmployeeData(employee));
+  dispatch(setCurrentSession(employee));
   const { deleteEmployee } = useEmployees();
 
   async function onSubmit(dataProps?: any) {

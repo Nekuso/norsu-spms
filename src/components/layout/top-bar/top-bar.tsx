@@ -13,8 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { signOut } from "@/lib/actions/index";
 import { toast } from "@/components/ui/use-toast";
+import { useDispatch } from "react-redux";
+import { setCurrentSession } from "@/redux/slices/employeeSlice";
 
-export default function Topbar() {
+export default function Topbar({ data }: any) {
+  const dispatch = useDispatch();
+  dispatch(setCurrentSession(data));
+
   const onSignOut = async () => {
     toast({
       description: "Logging out...",

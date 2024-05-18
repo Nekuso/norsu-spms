@@ -1,16 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: any = {};
+const initialState: any = {
+  currentSession: {},
+};
 
 const currentEmployeeSlice = createSlice({
   name: "currentEmployee",
   initialState: initialState,
   reducers: {
-    setEmployeeData: (state, action: PayloadAction<any>) => {
-      state.employeeData = action.payload;
+    setCurrentSession: (state, action: PayloadAction<any>) => {
+      state.currentSession = action.payload;
     },
   },
 });
 
-export const { setEmployeeData } = currentEmployeeSlice.actions;
+export const { setCurrentSession } = currentEmployeeSlice.actions;
 export default currentEmployeeSlice.reducer;

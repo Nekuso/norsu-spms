@@ -19,7 +19,7 @@ export const links = [
     label: "Requests",
   },
   {
-    href: "/application/main_supply",
+    href: "/application/main_supplies",
     icon: Package,
     label: "Main Supply",
   },
@@ -39,8 +39,8 @@ export const links = [
     label: "Analytics",
   },
   {
-    href: "/application/reports",
+    href: "/application/restock_reports",
     icon: File,
-    label: "Reports",
+    label: "Restock Reports",
   },
 ];

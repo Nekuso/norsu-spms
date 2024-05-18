@@ -12,6 +12,7 @@ import { useUOMS } from "@/hooks/useUOMS";
 import { useMainSupplies } from "@/hooks/useMainSupplies";
 import { useSupplyCategories } from "@/hooks/useSupplyCategories";
 import { setSupplyCategories } from "@/redux/slices/supplyCategoriesSlice";
+import { setMainSupplies } from "@/redux/slices/mainSuppliesSlice";
 
 export default function MainSupply() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export default function MainSupply() {
 
   dispatch(setUOMSData(uomsData));
   dispatch(setSupplyCategories(supplyCategoriesData));
+  dispatch(setMainSupplies(allMainSuppliesData));
 
   useEffect(() => {
     const { error } = getMainSupplies();

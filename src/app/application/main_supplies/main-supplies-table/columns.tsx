@@ -100,6 +100,11 @@ export const initialState = (uoms?: any, supply_categories?: any) => {
                   ({item.description})
                 </span>
               </span>
+              <span className="text-sm font-semibold">
+                <span className="text-xs text-slate-500">
+                  Barcode: {item.barcode}
+                </span>
+              </span>
             </div>
           </div>
         );

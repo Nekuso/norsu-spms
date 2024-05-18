@@ -106,7 +106,7 @@ export const useEmployees: any = () => {
       process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!,
       {
         auth: {
-          storageKey: "s1",
+          storageKey: "s10",
         },
       }
     );
@@ -114,41 +114,17 @@ export const useEmployees: any = () => {
       email: props.email,
       password: props.password,
       user_metadata: {
-        email: props.email,
         first_name: props.first_name,
         last_name: props.last_name,
         image_url: props.image_url,
         address: props.address,
-        contact_number: props.contact_number,
-        gender: props.gender,
-        dob: props.dob,
         role: props.role,
-        department: props.department,
+        sector: props.sector,
         password: props.password,
       },
     });
     console.log(props);
     console.log(result);
-    await new Promise((resolve) => setTimeout(resolve, duration));
-
-    return JSON.stringify(result);
-  };
-  const updateEmployeeStatus = async (props: any, duration?: number) => {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!,
-      {
-        auth: {
-          storageKey: "s1",
-        },
-      }
-    );
-    const result = await supabase.auth.admin.updateUserById(props.id, {
-      user_metadata: {
-        status: props.status,
-      },
-    });
-
     await new Promise((resolve) => setTimeout(resolve, duration));
 
     return JSON.stringify(result);
@@ -176,6 +152,5 @@ export const useEmployees: any = () => {
     getEmployees,
     updateEmployee,
     deleteEmployee,
-    updateEmployeeStatus,
   };
 };
