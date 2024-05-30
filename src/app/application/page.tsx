@@ -47,7 +47,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="mt-4 flex flex-col gap-0 text-base">
-                <h2 className="text-xl font-bold">78</h2>
+                <h2 className="text-3xl font-bold">78</h2>
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="mt-4 flex flex-col gap-0 text-base">
-                <h2 className="text-xl font-bold">12</h2>
+                <h2 className="text-3xl font-bold">12</h2>
               </div>
             </div>
           </div>
@@ -97,17 +97,15 @@ export default function Dashboard() {
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    className="feather feather-users"
+                    className="feather feather-check-circle"
                   >
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
                 </div>
               </div>
               <div className="mt-4 flex flex-col gap-0 text-base">
-                <h2 className="text-xl font-bold">21</h2>
+                <h2 className="text-3xl font-bold">21</h2>
               </div>
             </div>
           </div>
@@ -135,7 +133,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="mt-4 flex flex-col gap-0 text-base">
-                <h2 className="text-xl font-bold">26</h2>
+                <h2 className="text-3xl font-bold">26</h2>
               </div>
             </div>
           </div>
