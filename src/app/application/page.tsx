@@ -1,11 +1,6 @@
 "use client";
 
 import { useSelector } from "react-redux";
-import { FaHandHolding } from "react-icons/fa6";
-import { PiKeyReturn } from "react-icons/pi";
-import { VscVerifiedFilled } from "react-icons/vsc";
-import { BsClockHistory } from "react-icons/bs";
-import { VscGitPullRequestNewChanges } from "react-icons/vsc";
 
 export default function Dashboard() {
   const currentSession = useSelector((state: any) => state.currentSession);

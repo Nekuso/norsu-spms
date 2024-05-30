@@ -37,17 +37,17 @@ export default async function RootLayout({
         .from("employees")
         .select(
           `
-        id,
-        email,
-        first_name,
-        last_name,
-        image_url,
-        address,
-        sectors(*),
-        roles (id, role),
-        created_at,
-        password
-      `
+            id,
+            email,
+            first_name,
+            last_name,
+            image_url,
+            address,
+            sectors(*),
+            roles (id, role),
+            created_at,
+            password
+          `
         )
         .eq("id", data.user.id)
     : null;
