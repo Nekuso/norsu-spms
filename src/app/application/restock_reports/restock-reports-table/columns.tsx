@@ -44,6 +44,15 @@ export const initialState = (uoms?: any, supply_categories?: any) => {
     {
       id: "id",
       accessorKey: "id",
+      accessorFn: (row) => row.id,
+      header: "ID",
+      cell: ({ row }) => {
+        return <p className="text-sm">{row.original.id}</p>;
+      },
+    },
+    {
+      id: "created_at",
+      accessorKey: "created_at",
       header: ({ column }) => {
         return (
           <DropdownMenu>

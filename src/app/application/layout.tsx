@@ -43,6 +43,7 @@ export default async function RootLayout({
         last_name,
         image_url,
         address,
+        sectors(*),
         roles (id, role),
         created_at,
         password
@@ -52,7 +53,7 @@ export default async function RootLayout({
     : null;
   const currentUser = result?.data[0];
   if (error || !data?.user) {
-    redirect("/auth/login");
+    redirect("/");
   }
   return (
     <html lang="en">
@@ -63,9 +64,9 @@ export default async function RootLayout({
               Open the Software on a bigger screen
             </h1>
           </div>
-          <div className="max-lg:hidden grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative">
-            <Sidebar />
-            <div className="flex flex-col">
+          <div className="max-lg:hidden grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+            <Sidebar data={currentUser} />
+            <div className="flex flex-col relative">
               <Topbar data={currentUser} />
               {children}
             </div>

@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { signOut } from "@/lib/actions/index";
 import { toast } from "@/components/ui/use-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentSession } from "@/redux/slices/employeeSlice";
 
 export default function Topbar({ data }: any) {
@@ -29,16 +29,20 @@ export default function Topbar({ data }: any) {
   };
 
   return (
-    <div className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
-      <div className="w-full flex-1">
-        <div>
-          <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search products..."
-              className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-            />
+    <div className="flex h-14 items-center gap-4 border-b bg-slate-100 px-4 lg:h-[60px] lg:px-6 sticky top-0 z-50">
+      <div className="w-full justify-between flex place-items-center">
+        <span className="text-lg">
+          Welcome Back{" "}
+          <span className="font-bold">
+            {" "}
+            {data.first_name} {data.last_name}!
+          </span>
+        </span>
+        <div className="w-fit">
+          <div className="w-fit relative">
+            <span className="font-bold">
+              {data.sectors ? data.sectors.sector_name : "Administrator"}
+            </span>
           </div>
         </div>
       </div>

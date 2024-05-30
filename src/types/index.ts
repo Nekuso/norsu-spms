@@ -127,3 +127,60 @@ export type allRestockReportsDisplay = {
   }[];
   created_at: string;
 };
+
+export type allRequestsDisplay = {
+  id: number | any;
+  status: string | any;
+  remarks: string | any;
+  total_price: number | any;
+  created_at: string | any;
+  sectors: {
+    id: number;
+    image_url: string;
+    created_at: string;
+    description: string;
+    sector_head: string;
+    sector_name: string;
+    sector_type: string;
+  };
+};
+
+export type allProposals = {
+  id: number | any;
+  sectors: {
+    id: number | any;
+    image_url: string | any;
+    sector_name: string | any;
+    description: string | any;
+    sector_head: any;
+    sector_type: string | any;
+  };
+  file_name: string | any;
+  file_url: string | any;
+  created_at: string | any;
+};
+
+export type RequestDisplay = {
+  id: number | any;
+  name: string | any;
+  uoms: {
+    id: number;
+    unit_name: string;
+    created_at: string;
+  };
+  price: number;
+  uom_id: number;
+  barcode: string;
+  quantity: number;
+  image_url: string;
+  created_at: string;
+  request_id: number;
+  description: string;
+  main_supply_id: number;
+  supply_category: number;
+  supply_categories: {
+    id: number;
+    name: string;
+    created_at: string;
+  };
+};

@@ -3,9 +3,10 @@ import {
   ShoppingCart,
   Package,
   Building,
-  LineChart,
+  FileUp,
   User,
   File,
+  CornerDownLeft,
 } from "lucide-react";
 export const links = [
   {
@@ -19,9 +20,14 @@ export const links = [
     label: "Requests",
   },
   {
+    href: "/application/returns",
+    icon: CornerDownLeft,
+    label: "Returns",
+  },
+  {
     href: "/application/main_supplies",
     icon: Package,
-    label: "Main Supply",
+    label: "Main Supplies",
   },
   {
     href: "/application/sectors",
@@ -34,13 +40,18 @@ export const links = [
     label: "Management",
   },
   {
-    href: "/application/analytics",
-    icon: LineChart,
-    label: "Analytics",
-  },
-  {
     href: "/application/restock_reports",
     icon: File,
     label: "Restock Reports",
+  },
+  {
+    href: "/application/supplies",
+    icon: Package,
+    label: "Supplies",
+  },
+  {
+    href: "/application/proposals",
+    icon: FileUp,
+    label: "Supply Proposal",
   },
 ];

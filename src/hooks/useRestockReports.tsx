@@ -37,12 +37,11 @@ export const useRestockReports: any = () => {
         id,
         employees(*,roles(*)),
         total_price,
-        restock_report_entries(*),
+        restock_report_entries(*,uoms(*)),
         created_at
       `
       )
       .eq("id", id);
-    console.log(data);
 
     await new Promise((resolve) => setTimeout(resolve, duration));
     if (data?.length === 0) return true;

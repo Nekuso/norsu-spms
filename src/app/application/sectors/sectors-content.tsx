@@ -14,10 +14,7 @@ export default function DepartmentContent({
       {dataSectors.length === 0 ? (
         "Fetching Data..."
       ) : (
-        <DataTable
-          columns={initateColumns(sectorsSlice)}
-          data={dataSectors}
-        />
+        <DataTable columns={initateColumns(sectorsSlice)} data={dataSectors} />
       )}
     </div>
   );

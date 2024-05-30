@@ -6,11 +6,14 @@ import { Button } from "@/components/ui/button";
 import { links } from "./link";
 import IconLogo from "@/images/logo-icon.png";
 import Image from "next/image";
+import { useAllowedLinks } from "@/lib/actions/useAllowedLinks";
 
-export default function Sidebar() {
+export default function Sidebar({ data }: any) {
+  const allowedLinks = useAllowedLinks(data.roles.role);
+
   return (
-    <div className="hidden border-r md:block bg-blue-900 sticky top-0 left-0">
-      <div className="flex h-full max-h-screen flex-col gap-2">
+    <div className="hidden border-r md:block bg-blue-900 relative">
+      <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0">
         <div className="flex h-14 items-center border-b border-slate-500 px-4 lg:h-[60px] lg:px-6">
           <Link
             href="/"
@@ -27,18 +30,20 @@ export default function Sidebar() {
             <span className="sr-only">Toggle notifications</span>
           </Button>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 relative">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-white transition-all hover:text-primary text-lg"
-              >
-                <link.icon className="h-5 w-5" />
-                {link.label}
-              </Link>
-            ))}
+            {allowedLinks.map((link, i) => {
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-white transition-all hover:text-primary text-lg"
+                >
+                  <link.icon className="h-5 w-5" />
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       </div>

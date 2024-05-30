@@ -5,11 +5,10 @@ import { useEffect, useState } from "react";
 import RestockReportContent from "./restock-report-content";
 import createSupabaseBrowserClient from "@/lib/supabase/client";
 import { useRestockReports } from "@/hooks/useRestockReports";
-import { useRoles } from "@/hooks/useRoles";
 import RestockReportNotFound from "./not-found";
 import Skeleton from "./skeleton";
 
-export default function User({ params }: { params: any }) {
+export default function Report({ params }: { params: any }) {
   const [error, setError] = useState(null);
   const { getRestockReport, currentRestockReport } = useRestockReports();
 
@@ -43,7 +42,7 @@ export default function User({ params }: { params: any }) {
   }, []);
 
   return (
-    <div className="w-full h-full flex justify-center place-items-center">
+    <div className="w-full h-full flex justify-center place-items-center bg-slate-300">
       {error ? (
         <RestockReportNotFound />
       ) : currentRestockReport.length === 0 ? (

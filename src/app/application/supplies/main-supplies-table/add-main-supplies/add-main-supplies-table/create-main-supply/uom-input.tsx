@@ -7,40 +7,28 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FormControl } from "@/components/ui/form";
+import { useSelector } from "react-redux";
 
-export default function SelectDemo({ data, uoms }: any) {
-  function findUOMById(idString: any) {
-    const id = parseInt(idString);
-
-    const foundItem = uoms.find((item: any) => item.id === id);
-
-    if (foundItem) {
-      return foundItem.uom_name;
-    } else {
-      return "Unit of measure not found";
-    }
-  }
+export default function SelectDemo({ data }: { data: any }) {
+  const uomsData = useSelector((state: any) => state.uoms);
 
   return (
     <Select onValueChange={data.onChange} value={data.value}>
       <FormControl>
         <SelectTrigger
-          id="branch"
-          name="branch"
+          id="uom_id"
+          name="uom_id"
           value={data.value}
-          className="w-full border-slate-600/50 rounded-lg "
+          className="w-full  border-slate-600/50 rounded-lg "
         >
-          <SelectValue
-            className="text-black"
-            placeholder={data ? findUOMById(data.value) : "Select a unit"}
-          />
+          <SelectValue className="text-white" placeholder="Select a unit" />
         </SelectTrigger>
       </FormControl>
       <SelectContent className="rounded-lg border-slate-600/50 text-black">
         <SelectGroup>
-          {uoms.map((uom: any) => (
+          {uomsData.map((uom: any) => (
             <SelectItem key={uom.id} value={uom.id.toString()}>
-              {uom.unit_name}
+              {uom.value}
             </SelectItem>
           ))}
         </SelectGroup>

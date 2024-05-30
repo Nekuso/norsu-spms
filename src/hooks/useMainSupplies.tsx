@@ -65,7 +65,7 @@ export const useMainSupplies: any = () => {
         name,
         description,
         image_url,
-        stock_quantity,
+        supply_quantity,
         uoms(
             id,
             unit_name
@@ -74,13 +74,12 @@ export const useMainSupplies: any = () => {
           id, name
         ),
         price,
-        qrcode,
+        barcode,
         status,
         created_at
       `
       )
       .eq("id", id);
-    console.log(data);
 
     await new Promise((resolve) => setTimeout(resolve, duration));
     if (data?.length === 0) return true;
@@ -92,12 +91,11 @@ export const useMainSupplies: any = () => {
     const result = await supabase.rpc("updateorcreatesupplies", {
       supplies,
     });
-
     if (result.error) {
       return result.error;
     }
 
-    const reportResult = await supabase
+    const reportResult: any = await supabase
       .from("restock_reports")
       .insert({
         employee_id: props.employee_id,
@@ -105,12 +103,16 @@ export const useMainSupplies: any = () => {
       })
       .select();
 
+    if (reportResult.error) {
+      return reportResult.error;
+    }
+
     const reportEntriesResult = await supabase
       .from("restock_report_entries")
       .insert(
         props.restock_supplies.map((supply: any) => {
           return {
-            restock_report_id: reportResult.data?.[0]?.id,
+            restock_report_id: reportResult.data[0].id,
             name: supply.name,
             description: supply.description,
             image_url: supply.image,
@@ -123,6 +125,7 @@ export const useMainSupplies: any = () => {
         })
       )
       .select();
+    console.log(reportEntriesResult);
 
     await new Promise((resolve) => setTimeout(resolve, duration));
     return result;

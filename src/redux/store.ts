@@ -3,22 +3,25 @@ import currentEmployeeReducer from "./slices/employeeSlice";
 import sectorsSlice from "./slices/sectorsSlice";
 import uomsReducer from "./slices/uomsSlice";
 import rolesReducer from "./slices/rolesSlice";
-import brandsReducer from "./slices/brandsSlice";
 import mainSuppliesCartSlice from "./slices/mainSuppliesCartSlice";
 import supplyCategoriesSlice from "./slices/supplyCategoriesSlice";
 import mainSuppliesSlice from "./slices/mainSuppliesSlice";
+import requestsSlice from "./slices/requestSlice";
+import requestsCartSlice from "./slices/requestCartSlice";
 
 export const store = configureStore({
   reducer: {
     currentSession: currentEmployeeReducer,
     sectors: sectorsSlice,
     uoms: uomsReducer,
-    mainSupplies: mainSuppliesSlice,
     supplyCategories: supplyCategoriesSlice,
     roles: rolesReducer,
-    brands: brandsReducer,
 
+    mainSupplies: mainSuppliesSlice,
     mainSuppliesCart: mainSuppliesCartSlice,
+
+    request: requestsSlice,
+    requestCart: requestsCartSlice,
   },
 });
 

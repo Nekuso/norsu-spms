@@ -2,6 +2,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { EmployeeDisplay } from "@/types";
 import { QueryData, createClient } from "@supabase/supabase-js";
 import { useState } from "react";
+import createSupabaseBrowserClient from "@/lib/supabase/client";
 
 export const useEmployees: any = () => {
   const [allEmployeesData, setAllEmployeesData] = useState<EmployeeDisplay[]>(
@@ -40,10 +41,7 @@ export const useEmployees: any = () => {
     return JSON.stringify(result);
   };
   const getEmployees = async () => {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!
-    );
+    const supabase = createSupabaseBrowserClient();
     const result = await supabase
       .from("employees")
       .select(
@@ -73,10 +71,7 @@ export const useEmployees: any = () => {
     return setAllEmployeesData(data as EmployeesWithJoin);
   };
   const getEmployee = async (id: string, duration?: number) => {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!
-    );
+    const supabase = createSupabaseBrowserClient();
     const { data, error } = await supabase
       .from("employees")
       .select(
@@ -130,10 +125,7 @@ export const useEmployees: any = () => {
     return JSON.stringify(result);
   };
   const deleteEmployee = async (props: any, duration?: number) => {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!
-    );
+    const supabase = createSupabaseBrowserClient();
     const result = await supabase.auth.admin.deleteUser(props.id);
 
     await new Promise((resolve) => setTimeout(resolve, duration));
