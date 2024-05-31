@@ -27,6 +27,7 @@ const loginSchema = z.object({
     .string()
     .min(8, { message: "Password must be at least 8 characters" }),
 });
+
 export default function Login() {
   const [isPending, startTransition] = useTransition();
 
@@ -40,7 +41,6 @@ export default function Login() {
 
       const { error } = JSON.parse(result);
       if (error?.message) {
-        console.log(error);
         toast({
           variant: "destructive",
           title: "Error",
@@ -63,7 +63,7 @@ export default function Login() {
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
-              Enter your email below to login to your account
+              Enter your email and password below to login to your account
             </p>
           </div>
           <Form {...form}>
