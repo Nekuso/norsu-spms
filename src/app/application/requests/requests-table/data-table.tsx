@@ -69,11 +69,11 @@ export function DataTable<TData, TValue>({
       <div className="w-full h-full overflow-scroll-y">
         <ScrollArea className="w-full h-[580px] 2xl:h-[650px] rounded-2xl relative">
           <Table>
-            <TableHeader className=" border-none sticky top-0 z-[5]">
+            <TableHeader className=" border-none sticky top-0 z-[5] bg-blue-900 ">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow
                   key={headerGroup.id}
-                  className="border-b-darkBg shadow-sm"
+                  className="border-b-darkBg shadow-sm "
                 >
                   {headerGroup.headers.map((header) => {
                     return (

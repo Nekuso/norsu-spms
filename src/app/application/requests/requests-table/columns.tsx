@@ -27,7 +27,7 @@ export const initateColumns = (sectors: any) => {
         return (
           <div className="flex place-items-center gap-4 z-0">
             <div className="flex flex-col">
-              <span className="text-sm font-semibold">{row.original.id}</span>
+              <span className="text-sm font-semibold ">{row.original.id}</span>
             </div>
           </div>
         );

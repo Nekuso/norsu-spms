@@ -41,12 +41,12 @@ export const useProposals: any = () => {
             .from("proposals")
             .select(
               `
-      id,
-      file_name,
-      file_url,
-      sectors(*),
-      created_at
-    `
+              id,
+              file_name,
+              file_url,
+              sectors(*),
+              created_at
+            `
             )
             .eq("sector_id", props?.sectors?.id)
         : await supabase.from("proposals").select(`

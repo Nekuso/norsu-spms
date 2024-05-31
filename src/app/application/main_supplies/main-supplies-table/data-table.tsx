@@ -62,18 +62,18 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="w-full min-h-[765px] 2xl:min-h-[790px] flex flex-col justify-between gap-3 p-4 rounded-lg border">
+    <div className="w-full min-h-[765px] 2xl:min-h-[790px] flex flex-col justify-between gap-3 p-4 rounded-lg border ">
       <div className="w-full flex justify-between ">
         <DataTableToolbar table={table} />
       </div>
-      <div className="w-full h-full overflow-scroll-y">
-        <ScrollArea className="w-full h-[580px] 2xl:h-[650px] rounded-2xl relative">
+      <div className="w-full h-full overflow-scroll-y ">
+        <ScrollArea className="w-full h-[580px] 2xl:h-[650px] rounded-2xl relative ">
           <Table>
-            <TableHeader className=" border-none sticky top-0 z-[5]">
+            <TableHeader className=" border-none sticky top-0 z-[5] bg-blue-900">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow
                   key={headerGroup.id}
-                  className="border-b-darkBg shadow-sm"
+                  className="border-b-darkBg shadow-sm "
                 >
                   {headerGroup.headers.map((header) => {
                     return (

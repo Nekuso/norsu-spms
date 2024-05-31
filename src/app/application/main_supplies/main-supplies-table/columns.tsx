@@ -43,6 +43,7 @@ export const initialState = (uoms?: any, supply_categories?: any) => {
   const columns: ColumnDef<allMainStocksDisplay>[] = [
     {
       id: "name",
+
       accessorKey: "name",
       header: ({ column }) => {
         return (
@@ -51,7 +52,7 @@ export const initialState = (uoms?: any, supply_categories?: any) => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="-ml-3 h-8 data-[state=open]:bg-applicationPrimary data-[state=open]:text-white hover:bg-slate-50/40"
+                className="-ml-3 h-8 data-[state=open]:bg-applicationPrimary data-[state=open]:text-white hover:bg-slate-50/40 "
               >
                 <span>Name</span>
                 {column.getIsSorted() === "desc" ? (

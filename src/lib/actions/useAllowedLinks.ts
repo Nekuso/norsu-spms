@@ -6,9 +6,19 @@ export const useAllowedLinks = (role: string) => {
     case "Administrator":
       return links.filter((link) => link.label !== "Supplies");
     case "Receiving":
-      return links.filter((link) => link.label !== "Restock Reports");
+      return links.filter(
+        (link) =>
+          link.label !== "Restock Reports" &&
+          link.label !== "Management" &&
+          link.label !== "Supplies"
+      );
     case "Releasing":
-      return links.filter((link) => link.label !== "Restock Reports");
+      return links.filter(
+        (link) =>
+          link.label !== "Restock Reports" &&
+          link.label !== "Management" &&
+          link.label !== "Supplies"
+      );
     case "Sector":
       return links.filter(
         (link) =>
