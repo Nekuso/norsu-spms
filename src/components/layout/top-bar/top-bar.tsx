@@ -35,13 +35,13 @@ export default function Topbar({ data }: any) {
           Welcome Back{" "}
           <span className="font-bold">
             {" "}
-            {data.first_name} {data.last_name}!
+            {data.first_name} {data.last_name} !
           </span>
         </span>
         <div className="w-fit">
           <div className="w-fit relative">
             <span className="font-bold">
-              {data.sectors ? data.sectors.sector_name : "Administrator"}
+              {data.sectors ? data.sectors.sector_name : data.roles.role}
             </span>
           </div>
         </div>

@@ -23,9 +23,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -37,19 +37,12 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
-    barcode: false,
-  });
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
   const table = useReactTable({
     data,
     columns,
-    initialState: {
-      pagination: {
-        pageSize: 50,
-      },
-    },
     state: {
       sorting,
       columnVisibility,
@@ -69,15 +62,14 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="w-full flex flex-col justify-between gap-1 ">
-      <div className="w-full flex justify-between">
+    <div className="w-full min-h-[765px] 2xl:min-h-[790px] flex flex-col justify-between gap-3 p-4 rounded-lg border">
+      <div className="w-full flex justify-between ">
         <DataTableToolbar table={table} />
       </div>
-      <Separator className="bg-lightBorder"></Separator>
-      <div className="w-full h-full overflow-hidden">
-        <ScrollArea className="w-full h-[425px] 2xl:h-[520px] relative">
+      <div className="w-full h-full overflow-scroll-y">
+        <ScrollArea className="w-full h-[580px] 2xl:h-[650px] rounded-2xl relative">
           <Table>
-            <TableHeader className="bg-darkBg border-none sticky top-0 z-[5]">
+            <TableHeader className=" border-none sticky top-0 z-[5]">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow
                   key={headerGroup.id}
@@ -104,7 +96,7 @@ export function DataTable<TData, TValue>({
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
-                    className=" border-none hover:bg-slate-300/20 transition-all duration-300"
+                    className=" border-none hover:bg-slate-300/20 transition-all duration-300 cursor-pointer"
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
@@ -130,6 +122,7 @@ export function DataTable<TData, TValue>({
           </Table>
         </ScrollArea>
       </div>
+      <DataTablePagination table={table} />
     </div>
   );
 }

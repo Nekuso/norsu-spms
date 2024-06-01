@@ -9,14 +9,20 @@ import {
   TableFooter,
 } from "@/components/ui/table";
 import { useSelector } from "react-redux";
+import UpdateButton from "./update-dialog";
+import DeclineButton from "./decline-dialog";
 
 export default function RequestsContent({
   dataRequest,
 }: {
   dataRequest: any[];
 }) {
+  const currentSession = useSelector(
+    (state: any) => state.currentSession.currentSession
+  );
+
   return (
-    <div className="w-full flex flex-col gap-1">
+    <div className="w-full flex flex-col gap-3">
       <div className="w-full flex justify-between place-items-center">
         <div className="w-full flex flex-col">
           <span className="text-sm font-sm">
@@ -26,10 +32,31 @@ export default function RequestsContent({
             {dataRequest[0].sectors.sector_name}
           </h1>
         </div>
-        <div className="w-full flex flex-col place-items-end">
-          <span className="text-sm">
-            Status:{" "}
-            <span className="text-md font-semibold">
+        <div className="w-fit flex place-items-center justify-end gap-2">
+          {dataRequest[0].status === "Pending" && (
+            <DeclineButton dataRequest={dataRequest[0]} />
+          )}
+
+          {dataRequest[0].status !== "Released" &&
+            dataRequest[0].status !== "Declined" &&
+            currentSession.sectors === null && (
+              <UpdateButton dataRequest={dataRequest[0]} />
+            )}
+          <span
+            className={`flex gap-3 text-sm font-semibold border rounded-full px-5 py-3 `}
+          >
+            Status:
+            <span
+              className={`text-md font-semibold ${
+                dataRequest[0].status === "Pending"
+                  ? "text-orange-500 border-orange-500 "
+                  : dataRequest[0].status === "Approved"
+                  ? "text-yellow-500 border-yellow-500 "
+                  : dataRequest[0].status === "Released"
+                  ? "text-green-500 border-green-500 "
+                  : "text-red-500 border-red-500 "
+              }`}
+            >
               {dataRequest[0].status}
             </span>
           </span>
@@ -90,6 +117,12 @@ export default function RequestsContent({
           </TableRow>
         </TableFooter>
       </Table>
+      <div className="w-[40%]">
+        <span className="text-sm font-semibold">Remarks:</span>
+        <p className="text-sm w-full flex flex-wrap">
+          {dataRequest[0].remarks}
+        </p>
+      </div>
     </div>
   );
 }

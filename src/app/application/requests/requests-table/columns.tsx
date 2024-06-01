@@ -272,6 +272,28 @@ export const initateColumns = (sectors: any) => {
           </DropdownMenu>
         );
       },
+      cell: ({ row }) => {
+        const item = row.original;
+        return (
+          <div className="flex place-items-center gap-4 z-0">
+            <div className="flex flex-col">
+              <span
+                className={`text-sm font-semibold border rounded-full px-3 py-1 ${
+                  item.status === "Pending"
+                    ? "text-orange-500 border-orange-500 bg-orange-100"
+                    : item.status === "Approved"
+                    ? "text-yellow-500 border-yellow-500 bg-yellow-100"
+                    : item.status === "Released"
+                    ? "text-green-500 border-green-500 bg-green-100"
+                    : "text-red-500 border-red-500 bg-red-100"
+                }`}
+              >
+                {item.status}
+              </span>
+            </div>
+          </div>
+        );
+      },
     },
     {
       id: "actions",

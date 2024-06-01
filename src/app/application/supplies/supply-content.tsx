@@ -1,5 +1,5 @@
-import { DataTable } from "./main-supplies-table/data-table";
-import { initialState as initateColumns } from "./main-supplies-table/columns";
+import { DataTable } from "./supplies-table/data-table";
+import { initialState as initateColumns } from "./supplies-table/columns";
 import { useSelector } from "react-redux";
 
 export default function SupplyContent({ dataStocks }: { dataStocks: any[] }) {
