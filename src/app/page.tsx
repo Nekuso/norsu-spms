@@ -20,6 +20,9 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import LoginBG from "@/images/login-bg.jpg";
 import { Toaster } from "@/components/ui/toaster";
+import Logo from "@/images/norsu-Logo.ico";
+import Logo2 from "@/images/n1.jpg";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Must be a valid email" }),
@@ -57,12 +60,19 @@ export default function Login() {
   }
 
   return (
-    <div className="w-full h-screen lg:grid lg:grid-cols-2">
-      <div className="flex items-center justify-center py-12 bg-slate-100">
-        <div className="mx-auto grid w-[350px] gap-6">
+    <div className="w-full h-screen flex justify-center place-items-center lg:grid lg:grid-cols-1 bg-blue-900 relative">
+      <div className="w-[1100px] border shadow-xl h-[700px] flex place-items-center justify-center rounded-2xl overflow-hidden bg-white">
+        <div className="mx-auto grid w-fit gap-4 p-8">
+          <div className="w-full flex justify-center">
+            <Image
+              src={Logo}
+              alt="Image"
+              className="w-[60%] object-cover dark:brightness-[0.2] dark:grayscale"
+            />
+          </div>
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">Login</h1>
-            <p className="text-balance text-muted-foreground">
+            <h1 className="text-2xl font-bold">Welcome Back</h1>
+            <p className="text-balance text-black ">
               Enter your email and password below to login to your account
             </p>
           </div>
@@ -123,14 +133,14 @@ export default function Login() {
             </form>
           </Form>
         </div>
-      </div>
-      <div className="hidden bg-muted lg:block">
         <Image
-          src={LoginBG}
+          src={Logo2}
           alt="Image"
-          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          className="w-[60%] h-full opacity-85 object-cover dark:brightness-[0.2] dark:grayscale"
         />
       </div>
+      <Sonner />
+      <Toaster />
     </div>
   );
 }

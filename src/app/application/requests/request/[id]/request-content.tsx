@@ -11,11 +11,15 @@ import {
 import { useSelector } from "react-redux";
 import UpdateButton from "./update-dialog";
 import DeclineButton from "./decline-dialog";
+import Link from "next/link";
+import { IoMdDownload } from "react-icons/io";
 
 export default function RequestsContent({
   dataRequest,
+  currentProposal,
 }: {
   dataRequest: any[];
+  currentProposal: any;
 }) {
   const currentSession = useSelector(
     (state: any) => state.currentSession.currentSession
@@ -33,9 +37,24 @@ export default function RequestsContent({
           </h1>
         </div>
         <div className="w-fit flex place-items-center justify-end gap-2">
-          {dataRequest[0].status === "Pending" && (
-            <DeclineButton dataRequest={dataRequest[0]} />
+          {currentProposal ? (
+            <Link
+              className="w-fit py-2 flex place-items-center justify-center text-slate-700 rounded-full px-4 hover:bg-applicationPrimary hover:text-white hover:border-applicationPrimary transition-all duration-300 "
+              href={`${currentProposal.file_url}`}
+            >
+              <IoMdDownload className="" style={{ marginRight: "5px" }} />{" "}
+              Proposal
+            </Link>
+          ) : (
+            <span className="w-[200px] text-sm font-semibold text-red-500">
+              No proposal submitted
+            </span>
           )}
+
+          {dataRequest[0].status === "Pending" &&
+            currentSession.sectors === null && (
+              <DeclineButton dataRequest={dataRequest[0]} />
+            )}
 
           {dataRequest[0].status !== "Released" &&
             dataRequest[0].status !== "Declined" &&

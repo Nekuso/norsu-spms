@@ -65,7 +65,7 @@ export const useProposals: any = () => {
     return result;
   };
   const getProposal = async (id: string, duration?: number) => {
-    const { data, error } = await supabase
+    const result = await supabase
       .from("proposals")
       .select(
         `
@@ -76,11 +76,13 @@ export const useProposals: any = () => {
         created_at
       `
       )
-      .eq("id", id);
-    if (error) return error;
+      .eq("sector_id", id);
+    console.log(result);
+    console.log(id);
+    // if (error) return error;
 
     await new Promise((resolve) => setTimeout(resolve, duration));
-    return setCurrentSectorData(data);
+    // return setCurrentSectorData(data);
   };
   const deleteProposal = async (props: any, duration?: number) => {
     const result = await supabase.from("proposals").delete().eq("id", props.id);

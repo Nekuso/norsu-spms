@@ -8,13 +8,19 @@ import createSupabaseBrowserClient from "@/lib/supabase/client";
 import NotFound from "./not-found";
 import Skeleton from "./skeleton";
 import { useRequests } from "@/hooks/useRequests";
+import { useSelector } from "react-redux";
 
 export default function Request({ params }: { params: any }) {
   const [error, setError] = useState(null);
-  const { getRequest, currentRequest } = useRequests();
+  const { getRequest, currentRequest, currentProposal } = useRequests();
+  const currentSession = useSelector(
+    (state: any) => state.currentSession.currentSession
+  );
+
   useEffect(() => {
     const initialFetch = async () => {
       const result = await getRequest(params, 1000);
+
       if (result) setError(result);
     };
     initialFetch();
@@ -50,7 +56,10 @@ export default function Request({ params }: { params: any }) {
       ) : currentRequest.length === 0 ? (
         <Skeleton />
       ) : (
-        <RequestContent dataRequest={currentRequest} />
+        <RequestContent
+          dataRequest={currentRequest}
+          currentProposal={currentProposal}
+        />
       )}
     </main>
   );

@@ -265,21 +265,21 @@ export const initialState = (uoms?: any, supply_categories?: any) => {
         return value.includes(row.getValue(id));
       },
     },
-    {
-      id: "actions",
-      header: "Actions",
-      cell: ({ row }) => {
-        const id = row.original.id;
-        return (
-          <Link
-            className="w-fit py-2 flex place-items-center justify-center text-slate-400 rounded-md px-4 hover:bg-applicationPrimary hover:text-white hover:border-applicationPrimary transition-all duration-300 primary-glow"
-            href={`/application/main_supplies/main-supply/${id}`}
-          >
-            View
-          </Link>
-        );
-      },
-    },
+    // {
+    //   id: "actions",
+    //   header: "Actions",
+    //   cell: ({ row }) => {
+    //     const id = row.original.id;
+    //     return (
+    //       <Link
+    //         className="w-fit py-2 flex place-items-center justify-center text-slate-400 rounded-md px-4 hover:bg-applicationPrimary hover:text-white hover:border-applicationPrimary transition-all duration-300 primary-glow"
+    //         href={`/application/main_supplies/main-supply/${id}`}
+    //       >
+    //         View
+    //       </Link>
+    //     );
+    //   },
+    // },
   ];
   return columns;
 };

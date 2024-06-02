@@ -67,7 +67,12 @@ export default function UpdateStatus({ dataRequest }: any) {
   async function onSubmit(data: any) {
     startTransition(async () => {
       const result = await updateProgress(
-        { ...data, status: submitNextProgressData(dataRequest.status) },
+        {
+          ...data,
+          status: submitNextProgressData(dataRequest.status),
+          sector_id: dataRequest.sectors.id,
+          request_supply_entries: dataRequest.request_supply_entries,
+        },
         1000
       );
       const { error } = result;
@@ -79,6 +84,10 @@ export default function UpdateStatus({ dataRequest }: any) {
         });
         return;
       }
+      toast({
+        title: "Success",
+        description: "Action has been successfully completed",
+      });
       setDialogIsOpen(false);
     });
   }

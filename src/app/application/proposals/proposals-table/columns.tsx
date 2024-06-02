@@ -16,7 +16,7 @@ import {
 } from "@radix-ui/react-icons";
 import { allProposals } from "@/types";
 import Link from "next/link";
-
+import { IoMdDownload } from "react-icons/io";
 export const initateColumns = (sectors: any) => {
   const columns: ColumnDef<allProposals>[] = [
     {
@@ -182,6 +182,7 @@ export const initateColumns = (sectors: any) => {
             className="w-fit py-2 flex place-items-center justify-center text-slate-700 rounded-full px-4 hover:bg-applicationPrimary hover:text-white hover:border-applicationPrimary transition-all duration-300 "
             href={`${url}`}
           >
+            <IoMdDownload className="" style={{ marginRight: "10px" }} />{" "}
             Download
           </Link>
         );

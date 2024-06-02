@@ -8,6 +8,7 @@ export const useRequests: any = () => {
   );
   const [allRequestsData, setRequestsData] = useState<any>([]);
   const [currentRequest, setCurrentRequestData] = useState<any>([]);
+  const [currentProposal, setCurrentProposalData] = useState<any>([]);
 
   const createRequest = async (data: any) => {
     const result: any = await supabase
@@ -96,6 +97,21 @@ export const useRequests: any = () => {
     if (error) {
       return error;
     }
+    const propsosalResult = await supabase
+      .from("proposals")
+      .select(
+        `
+        id,
+        file_name,
+        file_url,
+        sectors(*),
+        created_at
+      `
+      )
+      .eq("sector_id", (result.data[0]?.sectors as any)?.id)
+      .order("created_at", { ascending: false });
+
+    setCurrentProposalData(propsosalResult.data ? propsosalResult.data[0] : []);
     return setCurrentRequestData(data);
   };
   const approveRequest = async () => {
@@ -137,6 +153,7 @@ export const useRequests: any = () => {
     // states
     allRequestsData,
     currentRequest,
+    currentProposal,
 
     // methods
     createRequest,

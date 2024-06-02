@@ -9,16 +9,18 @@ import { PiRulerBold } from "react-icons/pi";
 import { setUOMSData } from "@/redux/slices/uomsSlice";
 import { useDispatch } from "react-redux";
 import { useUOMS } from "@/hooks/useUOMS";
-import { useMainSupplies } from "@/hooks/useMainSupplies";
+import { useSupplies } from "@/hooks/useSupplies";
 import { useSupplyCategories } from "@/hooks/useSupplyCategories";
 import { setSupplyCategories } from "@/redux/slices/supplyCategoriesSlice";
 import { setMainSupplies } from "@/redux/slices/mainSuppliesSlice";
 
-export default function MainSupply() {
+export default function Supplies() {
   const dispatch = useDispatch();
-  const { getMainSupplies, allMainSuppliesData } = useMainSupplies();
+  const { getSupplies, allSuppliesData } = useSupplies();
   const { getSupplyCategories, allSupplyCategoriesData } =
     useSupplyCategories();
+
+  console.log(allSuppliesData);
   const { getUOMS, allUOMSData } = useUOMS();
 
   const uomsData = allUOMSData.map((uom: any) => ({
@@ -35,10 +37,9 @@ export default function MainSupply() {
 
   dispatch(setUOMSData(uomsData));
   dispatch(setSupplyCategories(supplyCategoriesData));
-  dispatch(setMainSupplies(allMainSuppliesData));
 
   useEffect(() => {
-    const { error } = getMainSupplies();
+    const { error } = getSupplies();
     if (error?.message) {
       toast({
         variant: "destructive",
@@ -56,9 +57,9 @@ export default function MainSupply() {
       .channel("supply-follow-up")
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "main_supplies" },
+        { event: "*", schema: "public", table: "sector_supplies" },
         (payload: any) => {
-          getMainSupplies();
+          getSupplies();
         }
       )
       .subscribe();
@@ -71,9 +72,9 @@ export default function MainSupply() {
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center">
-        <h1 className="text-lg font-semibold md:text-2xl">Main Supplies</h1>
+        <h1 className="text-lg font-semibold md:text-2xl">Supplies</h1>
       </div>
-      <StocksContent dataStocks={allMainSuppliesData} />
+      <StocksContent dataStocks={allSuppliesData} />
     </main>
   );
 }

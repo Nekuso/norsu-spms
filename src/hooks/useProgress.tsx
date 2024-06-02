@@ -13,7 +13,18 @@ export const useProgress: any = () => {
       .eq("id", props.id)
       .select();
 
+    if (props.status === "Released") {
+      const upsertResult = await supabase.rpc("upsertmainsupplies", {
+        sector_id: props.sector_id,
+        request_supply_entries: props.request_supply_entries,
+      });
+
+      console.log(upsertResult);
+    }
+
     await new Promise((resolve) => setTimeout(resolve, duration));
+
+    console.log(props);
 
     return result;
   };
