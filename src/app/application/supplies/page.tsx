@@ -7,7 +7,7 @@ import { toast } from "@/components/ui/use-toast";
 import { PiRulerBold } from "react-icons/pi";
 
 import { setUOMSData } from "@/redux/slices/uomsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useUOMS } from "@/hooks/useUOMS";
 import { useSupplies } from "@/hooks/useSupplies";
 import { useSupplyCategories } from "@/hooks/useSupplyCategories";
@@ -19,8 +19,10 @@ export default function Supplies() {
   const { getSupplies, allSuppliesData } = useSupplies();
   const { getSupplyCategories, allSupplyCategoriesData } =
     useSupplyCategories();
+  const currentSession = useSelector(
+    (state: any) => state.currentSession.currentSession
+  );
 
-  console.log(allSuppliesData);
   const { getUOMS, allUOMSData } = useUOMS();
 
   const uomsData = allUOMSData.map((uom: any) => ({
@@ -39,7 +41,7 @@ export default function Supplies() {
   dispatch(setSupplyCategories(supplyCategoriesData));
 
   useEffect(() => {
-    const { error } = getSupplies();
+    const { error } = getSupplies(currentSession.sectors.id);
     if (error?.message) {
       toast({
         variant: "destructive",
@@ -59,7 +61,7 @@ export default function Supplies() {
         "postgres_changes",
         { event: "*", schema: "public", table: "sector_supplies" },
         (payload: any) => {
-          getSupplies();
+          getSupplies(currentSession.sectors.id);
         }
       )
       .subscribe();

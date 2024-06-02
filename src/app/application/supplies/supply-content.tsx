@@ -9,14 +9,10 @@ export default function SupplyContent({ dataStocks }: { dataStocks: any[] }) {
   );
   return (
     <div className="w-full h-full">
-      {dataStocks.length === 0 ? (
-        "Fetching Data..."
-      ) : (
-        <DataTable
-          columns={initateColumns(uomsSlice, supplyCategoriesSlice)}
-          data={dataStocks}
-        />
-      )}
+      <DataTable
+        columns={initateColumns(uomsSlice, supplyCategoriesSlice)}
+        data={dataStocks}
+      />
     </div>
   );
 }

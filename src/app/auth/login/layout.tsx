@@ -24,10 +24,7 @@ export default async function RootLayout({
   }
   return (
     <html lang="en">
-      <body className={montserrat.className}>
-        {children}
-        <Toaster />
-      </body>
+      <body className={montserrat.className}>{children}</body>
     </html>
   );
 }

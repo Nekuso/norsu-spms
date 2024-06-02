@@ -1,18 +1,17 @@
-// import { DataTable } from "./restock-reports-table/data-table";
-// import { initialState as initateColumns } from "./restock-reports-table/columns";
+import { DataTable } from "./return-table/data-table";
+import { initateColumns } from "./return-table/columns";
+import { useSelector } from "react-redux";
 
-export default function ReturnsContent({
-  dataRestockReports,
+export default function RequestsContent({
+  dataReturns,
 }: {
-  dataRestockReports: any[];
+  dataReturns: any[];
 }) {
+  const sectorsSlice = useSelector((state: any) => state.sectors);
+
   return (
     <div className="w-full h-full">
-      {/* {dataRestockReports.length === 0 ? (
-        "Fetching Data..."
-      ) : (
-        <DataTable columns={initateColumns()} data={dataRestockReports} />
-      )} */}
+      <DataTable columns={initateColumns(sectorsSlice)} data={dataReturns} />
     </div>
   );
 }

@@ -15,6 +15,26 @@ export const links = [
     label: "Dashboard",
   },
   {
+    href: "/application/management",
+    icon: User,
+    label: "Management",
+  },
+  {
+    href: "/application/sectors",
+    icon: Building,
+    label: "Office/Unit",
+  },
+  {
+    href: "/application/main_supplies",
+    icon: Package,
+    label: "Main Supplies",
+  },
+  {
+    href: "/application/proposals",
+    icon: FileUp,
+    label: "Supply Proposal",
+  },
+  {
     href: "/application/requests",
     icon: ShoppingCart,
     label: "Requests",
@@ -24,21 +44,7 @@ export const links = [
     icon: CornerDownLeft,
     label: "Returns",
   },
-  {
-    href: "/application/main_supplies",
-    icon: Package,
-    label: "Main Supplies",
-  },
-  {
-    href: "/application/sectors",
-    icon: Building,
-    label: "Sectors",
-  },
-  {
-    href: "/application/management",
-    icon: User,
-    label: "Management",
-  },
+
   {
     href: "/application/restock_reports",
     icon: File,
@@ -48,10 +54,5 @@ export const links = [
     href: "/application/supplies",
     icon: Package,
     label: "Supplies",
-  },
-  {
-    href: "/application/proposals",
-    icon: FileUp,
-    label: "Supply Proposal",
   },
 ];

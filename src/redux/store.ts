@@ -20,6 +20,8 @@ export const store = configureStore({
     mainSupplies: mainSuppliesSlice,
     mainSuppliesCart: mainSuppliesCartSlice,
 
+    
+
     request: requestsSlice,
     requestCart: requestsCartSlice,
   },

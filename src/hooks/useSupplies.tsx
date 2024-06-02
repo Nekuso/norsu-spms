@@ -1,7 +1,12 @@
 import { createClient } from "@supabase/supabase-js";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export const useSupplies: any = () => {
+  const currentSession = useSelector(
+    (state: any) => state.currentSession.currentSession
+  );
+
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!
@@ -33,7 +38,8 @@ export const useSupplies: any = () => {
         created_at
     `
       )
-      .order("created_at", { ascending: false });
+      .order("created_at", { ascending: false })
+      .eq("department_id", currentSession.sectors.id);
 
     const { data, error } = result;
     if (error) {
@@ -43,7 +49,7 @@ export const useSupplies: any = () => {
   };
   const getSupply = async (id: string, duration?: number) => {
     const { data, error } = await supabase
-      .from("main_supplies")
+      .from("sector_supplies")
       .select(
         `
         id,

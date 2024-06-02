@@ -8,6 +8,7 @@ export const useMainSupplies: any = () => {
   );
   const [allMainSuppliesData, setMainSuppliesData] = useState<any>([]);
   const [currentMainSupply, setCurrentMainSupplyData] = useState<any>([]);
+  const [allSectorSuppliesData, setSectorsSuppliesData] = useState<any>([]);
 
   const createMainSupply = async (props: any, duration?: any) => {
     const result = await supabase.from("main_supplies").insert({
@@ -55,6 +56,38 @@ export const useMainSupplies: any = () => {
       return error;
     }
     return setMainSuppliesData(data);
+  };
+
+  const getSupplies = async (id?: any) => {
+    const result = await supabase
+      .from("sector_supplies")
+      .select(
+        `
+        id,
+        name,
+        description,
+        image_url,
+        supply_quantity,
+        uoms(
+          id,
+          unit_name
+        ),
+        supply_categories(
+          id, name
+        ),
+        price,
+        barcode,
+        status,
+        created_at
+    `
+      )
+      .order("created_at", { ascending: false })
+      .eq("department_id", id);
+    const { data, error } = result;
+    if (error) {
+      return error;
+    }
+    return setSectorsSuppliesData(data);
   };
   const getMainSupply = async (id: string, duration?: number) => {
     const { data, error } = await supabase
@@ -144,9 +177,11 @@ export const useMainSupplies: any = () => {
     // states
     allMainSuppliesData,
     currentMainSupply,
+    allSectorSuppliesData,
 
     // methods
     createMainSupply,
+    getSupplies,
     getMainSupply,
     getMainSupplies,
     updateMainSupplies,
