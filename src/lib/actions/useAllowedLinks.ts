@@ -25,7 +25,7 @@ export const useAllowedLinks = (role: string) => {
           link.label !== "Restock Reports" &&
           link.label !== "Main Supplies" &&
           link.label !== "Management" &&
-          link.label !== "Office/Unit"
+          link.label !== "Offices/Units"
       );
     default:
       return [];

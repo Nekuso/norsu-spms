@@ -22,7 +22,7 @@ export const links = [
   {
     href: "/application/sectors",
     icon: Building,
-    label: "Office/Unit",
+    label: "Offices/Units",
   },
   {
     href: "/application/main_supplies",
